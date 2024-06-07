@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding-top: 50px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #007BFF;
+            margin-bottom: 20px;
+        }
+
+        table {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+        }
+
+        th, td {
+            text-align: center;
+            vertical-align: middle !important;
+        }
+
+        th {
+            font-weight: bold;
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        .action-links a {
+            margin-right: 5px;
+            color: #007BFF;
+        }
+
+        .action-links a:hover {
+            text-decoration: none;
+            color: #0056b3;
+        }
+
+        .no-work {
+            font-style: italic;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Admin Dashboard</h1>
+
+        <h2>Customer List</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Gender</th>
+                    <th>Apartment Block</th>
+                    <th>Total Clothes</th>
+                    <th>Service Type</th>
+                    <th>Transaction ID</th>
+                    <th>Deposit Date</th>
+                    <th>Transaction Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for customer in customers %}
+                <tr>
+                    <td>{{ customer.username }}</td>
+                    <td>{{ customer.name }}</td>
+                    <td>{{ customer.contact }}</td>
+                    <td>{{ customer.gender }}</td>
+                    <td>{{ customer.apartment_block }}</td>
+                    <td>{{ customer.total_clothes }}</td>
+                    <td>{{ customer.service_type }}</td>
+                    <td>{{ customer.transaction_id }}</td>
+                    <td>{{ customer.deposit_date }}</td>
+                    <td>{{ customer.transaction_status }}</td>
+                    <td class="action-links">
+                        <a href="{{ url_for('view_customer', username=customer['username']) }}">View</a>
+                        <a href="{{ url_for('update_customer', username=customer['username']) }}">Update</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Work In Progress</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Transaction ID</th>
+                    <th>Transaction Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if work_in_progress %}
+                    {% for work in work_in_progress %}
+                    <tr>
+                        <td>{{ work.username }}</td>
+                        <td>{{ work.transaction_id }}</td>
+                        <td>{{ work.transaction_status }}</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="3" class="no-work">All works are done</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+
+        <h2>Report</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Deposit date</th>
+                    <th>Username</th>
+                    <th>Transaction ID</th>
+                    <th>Transaction Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for customer in customers %}
+                <tr>
+                    <td>{{customer.deposit_date}}</td>
+                    <td>{{ customer.username }}</td>
+                    <td>{{ customer.transaction_id }}</td>
+                    <td>{{ customer.transaction_status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Customer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f2f2f2;
+        }
+        h1 {
+            color: #007BFF;
+            margin-bottom: 30px;
+        }
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #007BFF;
+            color: #fff;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>View Customer</h1>
+    <table>
+        <tr>
+            <th>Username</th>
+            <td>{{ customer['username'] }}</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>{{ customer['name'] }}</td>
+        </tr>
+        <tr>
+            <th>Contact</th>
+            <td>{{ customer['contact'] }}</td>
+        </tr>
+        <tr>
+            <th>Gender</th>
+            <td>{{ customer['gender'] }}</td>
+        </tr>
+        <tr>
+            <th>Apartment Block</th>
+            <td>{{ customer['apartment_block'] }}</td>
+        </tr>
+        <tr>
+            <th>Total no of Clothes</th>
+            <td>{{ customer['total_clothes'] }}</td>
+        </tr>
+        <tr>
+            <th>Service Type</th>
+            <td>{{ customer['service_type'] }}</td>
+        </tr>
+    </table>
+    <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
+    <a href="/">Home</a>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cloth Deposit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #007BFF;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="int"],
+        select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"],
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        button[type="submit"]:hover,
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cloth Deposit</h1>
+    <h2>Rates:</h2>
+    <p>Only Washing: ₹10 per cloth</p>
+    <p>Washing and Ironing: ₹15 per cloth</p>
+    <form action="/cloth_deposit" method="post">
+        <div>
+            <label>Name:</label>
+            <input type="text" name="name" value="{{user['name']}}" readonly>
+        </div>
+        <div>
+            <label>Contact Number:</label>
+            <input type="text" name="contact_number" value="{{user['contact_number']}}" readonly>
+        </div>
+        <div>
+            <label>Gender:</label>
+            <input type="text" name="gender" value="{{user['gender']}}" readonly>
+        </div>
+        <div>
+            <label>Total Clothes:</label>
+            <input type="text" id="total_clothes" name="total_clothes" required>
+        </div>
+        <div>
+            <label>Service Type:</label>
+            <select name="service_type">
+                <option value="washing">Only Washing</option>
+                <option value="washing_ironing">Washing and Ironing</option>
+            </select>
+        </div>
+        <button type="submit" value="submit" >Submit</button>
+        <a href="/">Home</a>
+    </form>
+</body>
+</html>
